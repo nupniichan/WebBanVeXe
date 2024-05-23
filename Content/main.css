@@ -1,0 +1,635 @@
+﻿body {
+}
+.searchTitle {
+    text-align: center;
+    margin: 95px 0 0; /* Sử dụng shorthand property cho margin */
+    position: absolute; /* Đặt phần tử ở vị trí tuyệt đối */
+    top: 0; /* Đặt top về 0 để đặt phần tử ở đỉnh */
+    width: 100%; /* Đặt chiều rộng cho phần tử theo chiều ngang */
+    font-weight: bold; /* Sử dụng font-weight để làm đậm văn bản */
+    color: white
+}
+.search-vehicle {
+    text-align: center;
+    margin: 0px 0px 0; /* Sử dụng shorthand property cho margin */
+    position: absolute; /* Đặt phần tử ở vị trí tuyệt đối */
+    top: 0; /* Đặt top về 0 để đặt phần tử ở đỉnh */
+    width: 100%; /* Đặt chiều rộng cho phần tử theo chiều ngang */
+    font-weight: bold; /* Sử dụng font-weight để làm đậm văn bản */
+    color: black;
+}
+
+.search-title{
+    display: flex;
+    flex-direction: row;
+}
+.searchbar-container {
+    position: relative;
+}
+
+.search-bar{
+    width: auto;
+    height: 530px;
+}
+.img-icon {
+    height: 25px;
+    width: 25px;
+    margin-left: 5px;
+}
+.bg-img {
+    background-image: url('~/Content/images/Bai bien.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 500px;
+}
+.search-form {
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    background-color: red;
+}
+.search-content {
+    position: absolute;
+    width: 1110px;
+    height: 200px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border: 1px solid #ccc; /* Thêm viền */
+    border-radius: 10px; /* Bo góc */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Hiển thị bóng đổ */
+}
+
+/* Điều chỉnh CSS cho phần tử hiển thị các thành phố gợi ý */
+.suggestions-list {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 2;
+    display: none;
+}
+
+/* Cài đặt CSS cho dropdown tìm kiếm và dropdown thành phố */
+.dropdown {
+    position: relative;
+    z-index: 1;
+}
+
+#departureDropdown .dropdown-menu,
+#destinationDropdown .dropdown-menu {
+    z-index: 2;
+}
+
+/* Điều chỉnh CSS cho phần tử hiển thị các thành phố gợi ý */
+.suggestions-list.active {
+    display: block;
+    top: 100%; /* Đặt vị trí bên dưới dropdown tìm kiếm */
+}
+
+.inputsection {
+    display: flex;
+    justify-content: flex-start; /* Dời sang trái */
+    align-items: center; /* Đưa chúng vào giữa theo chiều dọc */
+}
+
+.inputcontainer {
+    border: 1px solid black;
+    padding: 1px;
+    margin-top: 100px;
+    width: 225px;
+    height: 68px;
+}
+    .inputcontainer p {
+        margin: 0; /* Loại bỏ khoảng cách giữa phần tử p và phần tử cha */
+        margin-left: 5px;
+    }
+.inputcontainer:first-child {
+        margin-left: 25px;
+        border-top-left-radius: 10px; /* Bo góc bên trái ở trên */
+        border-bottom-left-radius: 10px; /* Bo góc bên trái ở dưới */
+}
+.inputcontainer:nth-last-child(-n+2) {
+        border-top-right-radius: 10px; /* Bo góc bên phải ở trên */
+        border-bottom-right-radius: 10px; /* Bo góc bên phải ở dưới */
+}
+.search {
+    border: 1px solid black;
+    width: 168px;
+    height: 70px;
+    border-radius: 10px; /* Bo góc */
+    margin-left: 24px;
+    margin-top: 100px;
+    margin-right: 23px;
+    text-align: center;
+    font-size: 20px;
+    background-color: orange;
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+    .search:hover {
+        background-color: #ffcc00; /* Thay đổi màu nền khi di chuột đến nút */
+        color: #333; /* Thay đổi màu chữ khi di chuột đến nút */
+        cursor: pointer; /* Thay đổi kiểu con trỏ khi di chuột đến nút (vd: bấm được) */
+    }
+    .search p {
+        margin: 0; /* Loại bỏ khoảng cách giữa phần tử p và phần tử cha */
+        margin-left: 30px;
+    }
+.form-control {
+    overflow: hidden; /* Đảm bảo nội dung không tràn ra ngoài */
+    text-overflow: ellipsis; /* Hiển thị dấu chấm (...) nếu nội dung quá dài */
+}
+#departureDate {
+    width: 221px;
+    height: 38px;
+    margin-top: 2px;
+    margin-left: 0px;
+}
+#returnDate {
+    width: 221px;
+    height: 38px;
+    margin-top: 2px;
+    margin-left: 0px;
+}
+.input-group-append {
+    cursor: pointer;
+}
+#departureInput {
+    font-size: 12px;
+    margin-top: 1px;
+    border: none;
+    border-top: 1px solid #000;
+    outline: none;
+    height: 38px;
+}
+#destinationInput {
+    font-size: 12px;
+    margin-top: 1px;
+    border: none;
+    border-top: 1px solid #000;
+    outline: none;
+    height: 38px;
+}
+
+.suggestions {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1;
+    background-color: white;
+}
+
+    .suggestions div {
+        padding: 5px;
+        cursor: pointer;
+    }
+
+.inputcontainer {
+    position: relative;
+}
+
+    .inputcontainer input {
+        width: 100%;
+    }
+
+#wrapper{
+    max-width: 1100px;
+    margin: 0px auto;
+}
+.popular-route {
+    text-align: center; /* Căn giữa nội dung */
+}
+.popular-route-title{
+}
+
+.popular-route h2 {
+    position: relative;
+    top: -30px; /* Thay đổi giá trị để dịch chuyển tiêu đề lên trên */
+    left: auto
+}
+
+    .popular-route h4 {
+        position: relative;
+        top: -30px; /* Thay đổi giá trị để dịch chuyển tiêu đề lên trên */
+        left: auto
+    }
+.box-content {
+    display: flex;
+    overflow: auto; /* Cho phép cuộn nếu nội dung vượt quá phạm vi */
+}
+
+.main-box-route {
+    width: 100%;
+}
+
+.box-img {
+    display: flex;
+    flex-direction: row; /* Hiển thị các khung ảnh theo chiều ngang */
+    align-items: flex-start; /* Để các khung ảnh nằm ở đầu trang */
+    overflow: auto; /* Cho phép cuộn nếu nội dung vượt quá phạm vi */
+}
+
+.image-container {
+    min-width: 30%; /* Đặt kích thước tối thiểu cho các khung ảnh */
+    flex: 1; /* Chia không gian theo chiều ngang */
+    margin: 0 5px; /* Khoảng cách giữa các khung ảnh */
+}
+
+.image-container {
+    position: relative; /* Đặt vị trí tương đối cho .image-container */
+}
+
+.city-banner {
+    height: 160px;
+    width: 340px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.below-image-text {
+    position: absolute; /* Đặt vị trí tuyệt đối để đè lên .city-banner */
+    bottom: 0; /* Đặt vị trí ở phía dưới cùng của .image-container */
+    left: 0; /* Đặt vị trí ở góc trái của .image-container */
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    margin: 0;
+}
+
+
+.text-content {
+    margin: 0px 0px 0px 16px;
+    width: 340px;
+    height: 68px;
+}
+
+.text-route {
+    margin: -54px 108px 0px 0px;
+    color: white;
+    text-align: left;
+
+}
+.cityName {
+    margin: 0px 77px 0px 0px;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+.below-image-content{
+    width: 342px;
+    height: 300px;
+    margin: 6px 0px 0px 8.5px;
+    display: flex;
+    flex-direction: column;
+}
+.popular-content{
+    border: 1px solid black;
+    width: 340px;
+    height: 110px
+}
+
+    .popular-content:first-child {
+        border-top-left-radius: 10px; /* Đặt bán kính bo tròn cho góc trái phía trên */
+        border-top-right-radius: 10px; /* Đặt bán kính bo tròn cho góc phải phía trên */
+        overflow: hidden; /* Đảm bảo nội dung không tràn ra khỏi khu vực này */
+    }
+    .popular-content:last-child {
+        border-bottom-left-radius: 10px; /* Đặt bán kính bo tròn cho góc trái phía trên */
+        border-bottom-right-radius: 10px;
+        overflow: hidden; /* Đảm bảo nội dung không tràn ra khỏi khu vực này */
+    }
+
+.estimatedRoute {
+    text-align: left;
+    margin: 0px 0px 0px 5px
+}
+.cityTran {
+    text-align: left;
+    margin: 50px 0px 0px 5px;
+}
+.averagePrice {
+    text-align: right;
+    margin: -55px 0px 0px 0px
+}
+.category-title-container {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.64px;
+    color: rgb(72, 72, 72);
+    margin-bottom: 16px;
+}
+.discount-product {
+    width: 100%;
+    height: auto;
+    overflow: auto; /* Cho phép cuộn ngang khi nội dung vượt quá */
+}
+
+.discount-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* Cho phép cuộn ngang khi nội dung vượt quá */
+    white-space: nowrap; /* Ngăn ngắn nội dung xuống dòng */
+}
+
+.product-item {
+    margin-right: 5px; /* Khoảng cách 5px giữa các mục */
+    padding: 10px; /* Thêm padding cho mục để tạo khoảng trống */
+    border: 1px solid #ddd; /* Viền cho mục (tùy chọn) */
+    white-space: normal; /* Thiết lập lại white-space để cho phép ngắn nội dung xuống dòng trong mục */
+    width: 325px;
+    height: 150px;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.news-product {
+    width: 100%;
+    height: auto;
+    overflow: auto; /* Cho phép cuộn ngang khi nội dung vượt quá */
+}
+.news-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* Cho phép cuộn ngang khi nội dung vượt quá */
+    white-space: nowrap; /* Ngăn ngắn nội dung xuống dòng */
+}
+
+.news-item {
+    margin-right: 5px; /* Khoảng cách 5px giữa các mục */
+    padding: 10px; /* Thêm padding cho mục để tạo khoảng trống */
+    border: 1px solid #ddd; /* Viền cho mục (tùy chọn) */
+    white-space: normal; /* Thiết lập lại white-space để cho phép ngắn nội dung xuống dòng trong mục */
+}
+
+.img-news {
+    max-width: 300px;
+    max-height: 100%;
+}
+
+.for-manager-product {
+    width: 100%;
+    height: auto;
+    overflow: auto; /* Cho phép cuộn ngang khi nội dung vượt quá */
+}
+
+.manager-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* Cho phép cuộn ngang khi nội dung vượt quá */
+    white-space: nowrap; /* Ngăn ngắn nội dung xuống dòng */
+}
+
+.manager-item {
+    margin-right: 5px; /* Khoảng cách 5px giữa các mục */
+    padding: 10px; /* Thêm padding cho mục để tạo khoảng trống */
+    border: 1px solid #ddd; /* Viền cho mục (tùy chọn) */
+    white-space: normal; /* Thiết lập lại white-space để cho phép ngắn nội dung xuống dòng trong mục */
+}
+
+.management-img {
+    max-width: 300px;
+    max-height: 100%;
+}
+
+.box-information {
+    width: 100%;
+    height: 100%;
+    display: flex; /* Thêm display: flex */
+    flex-direction: row; /* Thêm flex-direction: row */
+}
+
+.BTH-information-product {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap; /* Ngăn ngắn nội dung xuống dòng */
+}
+
+.information-container {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 1100px; /* Thay đổi chiều rộng thành auto để nó co dãn theo nội dung */
+    white-space: normal;
+    height: 100%;
+}
+.information-item {
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    white-space: normal;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    width: 265px;
+    height: 145px;
+    border-radius: 10px; /* Đặt giá trị bán kính bo tròn 10px (hoặc tùy ý) */
+}
+
+.img-information-icon{
+    width: 50px;
+    height: 50px;
+}
+.icon-and-text {
+    display: flex;
+    align-items: center;
+    width:auto;
+    height:58px
+}
+
+.text-content {
+    word-wrap: break-word;
+    width:auto;
+    height:100%;
+    flex: 1; /* Để văn bản tự động xuống hàng khi không đủ không gian */
+}
+
+.img-information-icon {
+    margin-right: -4px; /* Khoảng trắng giữa biểu tượng và văn bản */
+}
+
+.filter-result {
+    display: flex;
+    flex-direction: row;
+    margin-top: -300px
+}
+
+.filter {
+    padding: 10px; /* Thêm padding cho các phần con (tuỳ chọn) */
+    margin: 5px; /* Thêm margin cho các phần con (tuỳ chọn) */
+    width: 350px;
+    height: auto;
+}
+.radio-group-sort{
+    margin-top: 2px;
+    padding-left: 2px
+}
+.filter-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: -7px;
+    margin-left: -12px
+}
+
+    .filter-time label {
+        display: flex;
+        align-items: center;
+        margin-top: -25px;
+        margin-left: 32px
+    }
+.checkbox-wrapper{
+    margin-left: 14px
+}
+
+.filter-search {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 5px;
+    width: 285px;
+    height: auto;
+    border-radius: 10px; /* Đặt giá trị bo góc tùy ý */
+}
+
+.result {
+    padding: 10px; /* Thêm padding cho các phần con (tuỳ chọn) */
+    margin: 5px; /* Thêm margin cho các phần con (tuỳ chọn) */
+    width: 750px;
+    height: auto;
+}
+
+.search-container {
+    position: relative;
+    width: 300px;
+    margin: 20px auto;
+}
+
+.input-group {
+    position: relative;
+}
+
+#results {
+    max-height: 100%; /* Điều chỉnh chiều cao tối đa của dropdown */
+    overflow-y: auto; /* Hiển thị thanh cuộn nếu nội dung quá dài */
+    border: 1px solid #ccc; /* Đường viền để tạo khung cho dropdown */
+    width: auto; /* Điều chỉnh chiều rộng của dropdown */
+}
+
+.form-control:focus + #results {
+    display: block;
+}
+
+.radio-groupdefault-sort{
+    display: flex;
+    flex-direction: column;
+    margin-top: -5px
+}
+
+#results option:hover {
+    background-color: #f2f2f2;
+}
+
+.more-filter {
+    padding: 10px; /* Thêm padding cho các phần con (tuỳ chọn) */
+    border: 1px solid #ddd; /* Thêm viền (tuỳ chọn) */
+    margin: 5px; /* Thêm margin cho các phần con (tuỳ chọn) */
+    width: 285px;
+    height: auto;
+    border-radius: 10px
+}
+
+.title-search {
+    font-size: 20px;
+    margin-left: 5px
+}
+#search-nhaxe-input {
+    height: auto;
+    width: 200px;
+    margin-top: -4px;
+    margin-left: 2px
+}
+
+.current-value {
+    display: inline;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.filter-min-max-price {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3px
+}
+
+.filter-min, .filter-max {
+    text-align: left;
+    width: 200px;
+}
+
+    .filter-min p {
+        margin-top: -12px
+    }
+
+    .filter-max p {
+        margin-top: 10px
+    }
+
+.filter-input-min {
+    margin-top: -12px
+}
+
+.filter-input-max {
+    margin-top: -30px
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.radio-kindofseat-sort{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-item:hover img {
+    transform-origin: center center;
+    transform: scaleY(1.12) scaleX(1.06)
+}
+@media (min-width: 768px) {
+    .information-item img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+/* Định dạng hình ảnh khi màn hình có chiều rộng nhỏ hơn hoặc bằng 768px */
+@media (max-width: 768px) {
+    .information-item img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+}

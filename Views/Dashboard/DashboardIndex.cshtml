@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutNhaXePage1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+@{
+    if (Session["UserId"] != null)
+    {
+    <body>
+        <style>
+            /* Thiết lập kiểu dáng cho khung thông tin */
+            .info-box {
+                border: 1px solid #ccc;
+                padding: 20px;
+                width: 200px;
+                margin: 0 50px;
+            }
+
+            .icon-link {
+                text-decoration: none; /* Loại bỏ gạch chân của liên kết */
+                color: black;
+                display: flex;
+                align-items: flex-start;
+                padding-top:10px
+            }
+
+            /* Sử dụng Flexbox để chia layout thành hai phần ngang */
+            .flex-container {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .section {
+                width: 20%; /* Điều chỉnh kích thước phần "section" tại đây */
+                margin-right: 20px; /* Tạo khoảng cách 20px giữa "section" và "contentManagement" */
+            }
+
+            .contentManagement {
+                flex-grow: 1; /* Phần "RenderBody" sẽ mở rộng để lấp đầy không gian trống */
+                margin: 25px 0px 0px 50px;
+                padding: 10px
+            }
+        </style>
+        <div id="wrapper_manager" style="height: auto; max-width: 1000px">
+            <div class="flex-container">
+                <div class="section">
+                    <content>
+                        <br />
+                        <div class="info-box">
+                            <a href="@Url.Action("QuanLyVe", "Dashboard")" class="icon-link">
+                                <i class="fa-regular fa-window-maximize"></i> Quản lý vé
+                            </a>
+                            <a href="@Url.Action("QuanLyChuyenDi","Dashboard")" class="icon-link">
+                                <i class="fa-solid fa-map"></i>  Quản lý chuyến đi
+                            </a>
+                            <a href="@Url.Action("QuanLyXe", "Dashboard")" class="icon-link">
+                                <i class="fa-solid fa-car"></i>Quản lý xe
+                            </a>
+                            <a href="@Url.Action("QuanLyNhanVien", "Dashboard")" class="icon-link">
+                                <i class="fa-solid fa-user"></i>Quản lý Nhân Viên
+                            </a>
+                            <a href="@Url.Action("ThongKe", "Dashboard")" class="icon-link">
+                                <i class="fa-brands fa-artstation"></i>Thống kê
+                            </a>
+                            <a href="@Url.Action("ThonTin", "Dashboard")" class="icon-link">
+                                <i class="fa-solid fa-circle-exclamation"></i> Giới thiệu
+                            </a>
+                        </div>
+                    </content>
+                </div>
+                <div class="contentManagement">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </body>
+    }
+    else
+    {
+        // Người dùng chưa đăng nhập, chuyển họ về trang đăng nhập
+        Response.Redirect("~/HangXe/Login"); 
+    }
+}
+
+</html>

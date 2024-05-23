@@ -1,0 +1,139 @@
+﻿@{
+    Layout = "~/Views/Shared/Header_Footer_Layout.cshtml";
+}
+
+    <!--Thanh search-->
+    <div class="search-bar">
+        <div class="searchbar-container">
+            <img src="~/Content/images/Bai bien.jpg" class="bg-img" />
+            <h2 class="searchTitle">Cam kết hoàn tiền gấp đôi nếu nhà xe không giữ vé</h2>
+            <div class="col-md-12 col-lg-8 col-sm-12">
+                <div class="search-content">
+                    <div>
+                        <h3 class="search-vehicle">Xe Khách</h3>
+                        <p style="margin-bottom: -75px;  margin-top: 45px;  margin-left: 400px; font-size: 25px;">Hôm nay bạn muốn đi đâu?</p>
+                    </div>
+                    <div class="inputsection">
+                        <div class="inputcontainer">
+                            <div class="search-title">
+                                <p>Điểm Xuất Phát</p>
+                                <img class="img-icon" src="~/Content/images/departure.png" />
+                            </div>
+                            <input type="text" class="form-control" id="departureInput" placeholder="Nhập nơi xuất phát">
+                            <div class="suggestions" id="departureSuggestions"></div>
+                        </div>
+                        <div class="inputcontainer">
+                            <div class="search-title">
+                                <p>Điểm Đến</p>
+                                <img class="img-icon" src="~/Content/images/destination.png" />
+                            </div>
+                            <input type="text" class="form-control" id="destinationInput" placeholder="Nhập nơi đến">
+                            <div class="suggestions" id="destinationSuggestions"></div>
+                        </div>
+
+                        <div class="inputcontainer">
+                            <p>Ngày Đi</p>
+                            <input type="text" class="form-control flatpickr" id="departureDate" placeholder="Chọn ngày đi">
+                        </div>
+
+                        <div class="inputcontainer">
+                            <p>Ngày Về (Tuỳ chọn)</p>
+                            <input type="text" class="form-control flatpickr" id="returnDate" placeholder="Chọn ngày về">
+                        </div>
+                        <button id="searchButton" class="btn btn-primary" style="margin-left: 30px; margin-top: 98px; height: 65px; width: 132px">Tìm Chuyến</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    <div>
+        <!--Phan nay ke thua tu masterlayout-->
+        @RenderBody()
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var departureInput = document.getElementById('departureInput');
+            var departureSuggestions = document.getElementById('departureSuggestions');
+            var destinationInput = document.getElementById('destinationInput');
+            var destinationSuggestions = document.getElementById('destinationSuggestions');
+            var cities = ["Hà Nội", "Thành Phố Hồ Chí Minh", "Đà Nẵng", "Đà Lạt", "Huế", "Cần Thơ", "Cà Mau", "Cao Bằng"];
+
+            // Sự kiện khi người dùng nhập vào ô Nơi Xuất Phát
+            departureInput.addEventListener('input', function () {
+                showSuggestions(departureInput, departureSuggestions, cities, destinationInput);
+            });
+
+            // Sự kiện khi người dùng nhập vào ô Nơi Đến
+            destinationInput.addEventListener('input', function () {
+                showSuggestions(destinationInput, destinationSuggestions, cities, departureInput);
+            });
+
+            // Đóng thanh dropdown khi người dùng bấm ra ngoài
+            document.addEventListener('click', function (event) {
+                if (event.target !== departureInput && event.target !== destinationInput) {
+                    departureSuggestions.innerHTML = '';
+                    destinationSuggestions.innerHTML = '';
+                }
+            });
+
+            // Hàm hiển thị gợi ý thời gian thực
+            function showSuggestions(input, suggestions, cityList, otherInput) {
+                var userInput = input.value.toLowerCase();
+
+                // Lọc danh sách các thành phố dựa trên ký tự người dùng đã nhập
+                var filteredCities = cityList.filter(function (city) {
+                    return city.toLowerCase().includes(userInput) && city !== otherInput.value;
+                });
+
+                suggestions.innerHTML = '';
+
+                if (filteredCities.length > 0) {
+                    filteredCities.forEach(function (city) {
+                        var listItem = document.createElement('div');
+                        listItem.textContent = city;
+                        listItem.addEventListener('click', function () {
+                            input.value = city;
+                            suggestions.innerHTML = '';
+                        });
+                        suggestions.appendChild(listItem);
+                    });
+                } else {
+                    suggestions.innerHTML = 'Không tìm thấy thành phố nào phù hợp';
+                }
+            }
+            if (localStorage.getItem('departureInput')) {
+                departureInput.value = localStorage.getItem('departureInput');
+                destinationInput.value = localStorage.getItem('destinationInput');
+                document.getElementById('departureDate').value = localStorage.getItem('departureDate');
+                document.getElementById('returnDate').value = localStorage.getItem('returnDate');
+            }
+            $('#searchButton').on('click', function () {
+                var diemXuatPhat = $('#departureInput').val();
+                var diemDen = $('#destinationInput').val();
+                var ngayDi = $('#departureDate').val();
+
+                // Chuyển đổi định dạng ngày sang "YYYY-MM-DD"
+                var formattedNgayDi = moment(ngayDi, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+                // Lưu giá trị từ các input vào localStorage
+                localStorage.setItem('departureInput', diemXuatPhat);
+                localStorage.setItem('destinationInput', diemDen);
+                localStorage.setItem('departureDate', ngayDi);
+                // sua / bo sung sau khi da lam xong
+/*                localStorage.setItem('returnDate', formattedNgayDi);*/
+
+                // Thực hiện chuyển hướng đến trang "Search" với các tham số truyền trên URL
+                window.location.href = '/Search/Search?diemXuatPhat=' + diemXuatPhat + '&diemDen=' + diemDen + '&ngayDi=' + formattedNgayDi;
+            });
+
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr(".flatpickr", {
+                enableTime: false,
+                dateFormat: "d/m/Y",
+                minDate: "today",  // Đặt ngày tối thiểu là ngày hôm nay
+            });
+        });
+
+    </script>

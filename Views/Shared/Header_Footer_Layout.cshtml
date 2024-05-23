@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@16.0.2/distribute/nouislider.min.css">
+    <script type="text/javascript" src="~/Scripts/MainScript.js"></script>
+    <link href="~/Content/header.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/footer.css" />
+
+    <!-- Bổ sung các liên kết CSS và JavaScript mới tại đây -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+    <header>
+        <!--Header-->
+        <nav class="py-3 bg-light border-bottom">
+            <div class="container d-flex flex-wrap justify-content-between align-items-center">
+                <a class="navbar-brand" href="#">Your Logo</a>
+                <ul class="nav">
+                    <li class="nav-item"><a href="@Url.Action("TrangChu","Home")" class="nav-link link-dark px-2">Trang chủ</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Tra cứu vé</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Liên hệ</a></li>
+                    <li class="nav-item"><a href="@Url.Action("BecomeOurPartner","HangXe")" class="nav-link link-dark px-2">Trở thành đối tác</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Về chúng tôi</a></li>
+                </ul>
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        @if (Session["UserId"] != null)
+                        {
+                            <span class="nav-link link-dark px-2">
+                                Chào @Session["UserName"]
+                            </span>
+                        }
+                    </div>
+                    <div class="col-md-12 text-end">
+                        @if (Session["UserId"] != null)
+                        {
+                            <button type="button" class="btn btn-outline-primary me-2" onclick="window.location.href = '@Url.Action("Logout", "Account")'">Đăng xuất</button>
+                        }
+                        else
+                        {
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-primary me-2" onclick="window.location.href = '@Url.Action("Login", "Account")'">Đăng nhập</button>
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '@Url.Action("Register", "Account")'">Đăng ký</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
+    <!--Footer-->
+    <br />
+    <br />
+    <footer class="footer_area section_padding_130_0">
+        <div class="container">
+            <div class="row">
+                <!-- Single Widget-->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-footer-widget section_padding_0_130">
+                        <!-- Footer Logo-->
+                        <div class="footer-logo mb-3"></div>
+                        <p style="font-weight:bold">BTH nền tảng đặt xé xe hàng đầu Việt Nam</p>
+                        <!-- Copywrite Text-->
+                        <div class="copywrite-text mb-5">
+                            <p class="mb-0">Địa chỉ:</p>
+                            <p style="text-align: left;">
+                                <i class="lni-heart mr-1"></i><a class="nav-link link-dark px-2 active m-lg-1" href="https://s.pro.vn/wmUP">Lầu 2, tòa nhà H3 Circo Hoàng Diệu, 384 Hoàng Diệu, Phường 6, Quận 4, Tp. Hồ Chí Minh, Việt Nam</a>
+                            </p>
+                            <p style="text-align: left;">
+                                <a class="nav-link link-dark px-2 active m-lg-1" href="https://s.pro.vn/wmUP">Lầu 2, tòa nhà H3 Circo Hoàng Diệu, 384 Hoàng Diệu, Phường 6, Quận 4, Tp. Hồ Chí Minh, Việt Nam</a>
+                            </p>
+                        </div>
+                        <!-- Footer Social Area-->
+                        <div class="footer_social_area"><a href="https://www.facebook.com/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="fa-brands fa-facebook"></i></a><a href="https://twitter.com/" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"><i class="fa-brands fa-twitter"></i></a></div>
+                    </div>
+                </div>
+                <!-- Single Widget-->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="single-footer-widget section_padding_0_130">
+                        <!-- Widget Title-->
+                        <h5 class="widget-title" style=" margin-left: 7px; ">Về chúng tôi</h5>
+                        <!-- Footer Menu-->
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="@Url.Action("GioiThieu","Home")" class="nav-link link-dark px-2 active">Giới thiệu</a></li>
+                                <li><a href="@Url.Action("BecomeOurPartner","HangXe")" class="nav-link link-dark px-2 active">Phần mềm đại lý</a></li>
+                                <li><a href="@Url.Action("Terms","Home")" class="nav-link link-dark px-2 active">Terms &amp; Chính sách</a></li>
+                                <li><a href="@Url.Action("Community","Home")" class="nav-link link-dark px-2 active">Cộng đồng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Widget-->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="single-footer-widget section_padding_0_130">
+                        <!-- Widget Title-->
+                        <h5 class="widget-title" style="margin-left: 7px">Hỗ trợ</h5>
+                        <!-- Footer Menu-->
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="@Url.Action("HuongDanThanhToan","Home")" class="nav-link link-dark px-2 active">Hướng dẫn thanh toán</a></li>
+                                <li><a href="@Url.Action("ChinhSachBaoMat","Home")" class="nav-link link-dark px-2 active">Chính sách bảo mật thông tin</a></li>
+                                <li><a href="@Url.Action("Terms","Home")" class="nav-link link-dark px-2 active">Điều khoản sử dụng</a></li>
+                                <li><a href="@Url.Action("CommonQuestion","Home")" class="nav-link link-dark px-2 active">Các câu hỏi thường gặp</a></li>
+                                <li><a href="@Url.Action("HuongDanDatVe","Home")" class="nav-link link-dark px-2 active">Hướng dẫn đặt vé</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Widget-->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="single-footer-widget section_padding_0_130">
+                        <!-- Widget Title-->
+                        <h5 class="widget-title" style=" margin-left: 7px;">Liên hệ chúng tôi</h5>
+                        <!-- Footer Menu-->
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="#" class="nav-link link-dark px-2 active">Hotline: 09xxxxxxxxx</a></li>
+                                <li><a href="mailto:xxx@bth.com" class="nav-link link-dark px-2 active">Email: xxx@BTHnetworl.com</a></li>
+                                <li><a href="#" class="nav-link link-dark px-2 active">Trung tâm hỗ trợ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright_text">
+                        <p>Bản quyền &copy; 2023 thuộc về nhóm làm cái này.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

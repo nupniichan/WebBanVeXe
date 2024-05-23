@@ -1,0 +1,54 @@
+﻿@model ltweb_.Models.NhanVien
+
+@{
+    ViewBag.Title = "RemoveNhanVien";
+    Layout = "~/Views/Dashboard/DashboardIndex.cshtml";
+}
+
+<h2>Xoá nhân viên</h2>
+
+<p>Bạn muốn xoá nhân viên này?</p>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.IdNhanVien)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.IdNhanVien)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.HoTen)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.HoTen)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.SoDienThoai)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.SoDienThoai)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.ChucVu)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.ChucVu)
+    </dd>
+    <!-- Thêm các trường dữ liệu khác tương tự cho việc hiển thị thông tin chi tiết -->
+</dl>
+
+@using (Html.BeginForm("RemoveNhanVienConfirmed", "Dashboard", new { id = Model.IdNhanVien }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="submit" value="Remove" class="btn btn-danger" />
+        @Html.ActionLink("Huy", "QuanLyNhanVien", null, new { @class = "btn btn-default" })
+    </div>
+}

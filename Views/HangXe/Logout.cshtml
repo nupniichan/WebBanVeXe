@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Logout";
+    Layout = "~/Views/Shared/LayoutNhaXePage1.cshtml";
+}
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Đăng Xuất</h2>
+                    <p>Bạn có muốn đăng xuất?</p>
+                    <form method="post" action="ConfirmLogout">
+                        @Html.AntiForgeryToken()
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Có</button>
+                            <a href="@Url.Action("Login", "HangXe")" class="btn btn-secondary">Không</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

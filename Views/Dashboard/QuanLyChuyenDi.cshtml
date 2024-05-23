@@ -1,0 +1,59 @@
+﻿@model List<ltweb_.Models.ChuyenDi>
+
+@{
+    ViewBag.Title = "QuanLyChuyenDi";
+    Layout = "~/Views/Dashboard/DashboardIndex.cshtml";
+}
+
+@Html.ActionLink("Tạo mới chuyến đi", "CreateChuyenDi", "Dashboard", new { }, new { @class = "btn btn-primary" })
+<br />
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">Id Chuyến Đi</th>
+                <th class="text-center">Điểm Xuất Phát</th>
+                <th class="text-center">Điểm đi cụ thể</th>
+                <th class="text-center">Điểm đến</th>
+                <th class="text-center">Điểm đến cụ thể</th>
+                <th class="text-center">Thời gian đi</th>
+                <th class="text-center">Thời gian đế</th>
+                <th class="text-center">Giờ đi dự kiến</th>
+                <th class="text-center">Giá</th>
+                <th class="text-center">Tên tài xế</th>
+                <th class="text-center">Biển số xe</th>
+                <th class="text-center">Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chuyenDi in Model)
+            {
+                <tr>
+                    <td class="text-center">@chuyenDi.IdChuyenDi</td>
+                    <td class="text-center">@chuyenDi.DiemXuatPhat</td>
+                    <td class="text-center">@chuyenDi.DiemDiCuThe</td>
+                    <td class="text-center">@chuyenDi.DiemDen</td>
+                    <td class="text-center">@chuyenDi.DiemDenCuThe</td>
+                    <td class="text-center">@chuyenDi.ThoiGianDi</td>
+                    <td class="text-center">@chuyenDi.ThoiGianDen</td>
+                    <td class="text-center">@chuyenDi.ThoiGianDuKien</td>
+                    <td class="text-center">@chuyenDi.Gia</td>
+                    <td class="text-center">@chuyenDi.NhanVien.HoTen</td>
+                    <td class="text-center">@chuyenDi.XeKhach.BienSoXe</td>
+                    <td class="text-center">
+                        @Html.ActionLink("Sửa", "EditChuyenDi", new { id = chuyenDi.IdChuyenDi }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Xóa", "DeleteChuyenDi", new { id = chuyenDi.IdChuyenDi }, new { @class = "btn btn-danger", @data_confirm = "Bạn có chắc chắn muốn xóa chuyến đi này?" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table tbody tr td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>

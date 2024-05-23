@@ -1,0 +1,63 @@
+﻿@model ltweb_.Models.XeKhach
+
+@{
+    ViewBag.Title = "RemoveXeKhach";
+    Layout = "~/Views/Dashboard/DashboardIndex.cshtml";
+}
+
+<h2>Remove XeKhach</h2>
+
+<p>Bạn có thực sự muốn xoá xe khách này không? </p>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.IdXeKhach)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.IdXeKhach)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.BienSoXe)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.BienSoXe)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.LoaiXe)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.LoaiXe)
+    </dd>
+
+
+    <dt>
+        @Html.DisplayNameFor(model => model.SoGhe)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.SoGhe)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.TenLoaiXe)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.TenLoaiXe)
+    </dd>
+    <!-- Thêm các trường dữ liệu khác tương tự cho việc hiển thị thông tin chi tiết -->
+</dl>
+
+@using (Html.BeginForm("RemoveXeKhachConfirmed", "Dashboard", new { id = Model.IdXeKhach }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="submit" value="Remove" class="btn btn-danger" />
+        @Html.ActionLink("Huỷ", "QuanLyXe", null, new { @class = "btn btn-default" })
+    </div>
+}

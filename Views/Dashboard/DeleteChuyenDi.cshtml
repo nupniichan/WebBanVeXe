@@ -1,0 +1,21 @@
+﻿@model ltweb_.Models.ChuyenDi
+
+@{
+    ViewBag.Title = "DeleteChuyenDi";
+    Layout = "~/Views/Dashboard/DashboardIndex.cshtml";
+}
+
+<td class="text-center">
+    @Html.ActionLink("Xóa", "DeleteChuyenDi", new { id = chuyenDi.IdChuyenDi }, new { @class = "btn btn-danger", @data_confirm = "Bạn có chắc chắn muốn xóa chuyến đi này?" })
+</td>
+
+<script>
+    $(document).ready(function () {
+        $('[data-confirm]').on('click', function (e) {
+            if (!confirm($(this).data('confirm'))) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+

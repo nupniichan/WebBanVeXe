@@ -1,0 +1,72 @@
+﻿@model ltweb_.Models.XeKhach
+@using ltweb_.Models
+
+@{
+    ViewBag.Title = "CreateXeKhach";
+    Layout = "~/Views/Dashboard/DashboardIndex.cshtml";
+}
+
+<h2>CreateXeKhach</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>XeKhach</h4>
+    <hr />
+    @Html.HiddenFor(model => model.IdHangXe) <!-- Thêm trường ẩn idhangxe -->
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.BienSoXe, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BienSoXe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BienSoXe, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SoGhe, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SoGhe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SoGhe, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LoaiXe, "Loại xe", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default">
+                    @Html.RadioButtonFor(model => model.LoaiXe, LoaiXeOption.GiuongNgoi, new { id = "LoaiXe_GiuongNgoi" }) Giường Ngồi
+                </label>
+                <label class="btn btn-default">
+                    @Html.RadioButtonFor(model => model.LoaiXe, LoaiXeOption.GiuongNam, new { id = "LoaiXe_GiuongNam" }) Giường Nằm
+                </label>
+                <label class="btn btn-default">
+                    @Html.RadioButtonFor(model => model.LoaiXe, LoaiXeOption.Limousin, new { id = "LoaiXe_Limousin" }) Limousin
+                </label>
+            </div>
+            @Html.ValidationMessageFor(model => model.LoaiXe, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TenLoaiXe, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenLoaiXe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenLoaiXe, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+<div>
+    @Html.ActionLink("Quay lại", "QuanLyXe")
+</div>

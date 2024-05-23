@@ -1,0 +1,147 @@
+﻿@model IEnumerable<ltweb_.Models.ChuyenDiViewModel>
+@using ltweb_.Models
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Home/TrangTimKiem_.cshtml";
+}
+
+<style>
+    .chuyen-di-item {
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .item-label {
+        font-weight: bold;
+        flex: 1;
+    }
+
+    .item-value {
+        flex: 2;
+    }
+
+    .DiemXuatPhat-DiemDen {
+        display: flex;
+        justify-content: space-between; /* Hiển thị điểm xuất phát và điểm đến ở hai phía trái và phải */
+        padding: 5px; /* Thêm khoảng cách */
+    }
+
+    .DiemXuatPhat, .DiemDen {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Căn giữa nội dung bên trong */
+    }
+
+    .item-label, .item-value {
+        display: flex;
+        justify-content: center; /* Căn giữa nội dung bên trong */
+    }
+
+    .line-img {
+        width: 110px;
+        height: 20px;
+        margin-top: -16px;
+    }
+</style>
+
+<div class="chuyen-di-list">
+    @if (Model.Any())
+    {
+        DateTime thoiGianHienTai = DateTime.Now; // Lấy thời gian hiện tại
+        foreach (var chuyenDi in Model)
+        {
+            DateTime? thoiGianRoiNullable = chuyenDi.ThoiGianDi;
+            DateTime thoiGianRoi = thoiGianRoiNullable ?? DateTime.MinValue;
+            if (thoiGianHienTai <= thoiGianRoi)
+            {
+                <div class="chuyen-di-item card mb-3">
+                    <div class="card-body">
+                        <p style="text-align:center">@chuyenDi.HangXe.TenHangXe</p>
+                        <hr />
+                        @{
+                            double gioDuKien = chuyenDi.GioDuKien; // Giả sử bạn có giá trị này từ cơ sở dữ liệu
+                            int gio = (int)gioDuKien; // Lấy phần nguyên (8 giờ)
+                            int phut = (int)((gioDuKien - gio) * 60); // Chuyển phần thập phân thành phút (0.5 giờ = 30 phút)
+                        }
+
+                        <p style="margin-bottom: -35px; margin-left: 300px"> @gio Tiếng @phut Phút</p>
+                        <div class="DiemXuatPhat-DiemDen d-flex justify-content-between">
+                            <div class="DiemXuatPhat">
+                                @{
+                                    DateTime? thoiGianDiNullable = chuyenDi.ThoiGianDi; // Giả sử chuyenDi.ThoiGianDen là kiểu DateTime?
+                                    DateTime thoiGianDi = thoiGianDiNullable ?? DateTime.MinValue; // Sử dụng DateTime.MinValue nếu giá trị là null
+                                    string gioPhutDi = thoiGianDi.ToString("HH:mm"); // Định dạng giờ và phút
+                                }
+                                <p class="card-text" style="margin-top:8px">@gioPhutDi</p>
+                                <p class="card-text" style="margin-top: -15px;">@chuyenDi.DiemDiCuThe</p>
+                                <img src="~/Content/images/line.png" class="line-img" />
+                                <p class="card-text">@chuyenDi.DiemXuatPhat</p>
+                            </div>
+                            <div class="line-image">
+                                <img src="~/Content/images/dotted-line.png" style="width: 350px; margin-top: 12px; height: auto; margin-left: -12px;" />
+                            </div>
+                            <div class="DiemDen">
+                                @{
+                                    DateTime? thoiGianDenNullable = chuyenDi.ThoiGianDen; // Giả sử chuyenDi.ThoiGianDen là kiểu DateTime?
+                                    DateTime thoiGianDen = thoiGianDenNullable ?? DateTime.MinValue; // Sử dụng DateTime.MinValue nếu giá trị là null
+                                    string gioPhutDen = thoiGianDen.ToString("HH:mm"); // Định dạng giờ và phút
+                                }
+                                <p class="card-text" style="margin-top:8px">@gioPhutDen</p>
+                                <p class="card-text " style="margin-top: -15px;">@chuyenDi.DiemDenCuThe</p>
+                                <img src="~/Content/images/line.png" class="line-img" />
+                                <p class="card-text">@chuyenDi.DiemDen</p>
+                            </div>
+                        </div>
+                        @{
+                            // Chuyển đổi giá trị kiểu string thành kiểu enum LoaiXeOption
+                            LoaiXeOption loaiXe = (LoaiXeOption)Enum.Parse(typeof(LoaiXeOption), chuyenDi.XeKhach.LoaiXe);
+                        }
+                        <p class="card-text" style="margin-left: 315px; margin-top: -48px;">@loaiXe.GetDisplayName()</p>
+                        <div class="HangDuoi" style="padding-top:25px; height:55px">
+                            <div class="item">
+                                <p class="card-text" style="margin-bottom: -50px;">Số ghế còn trống: @chuyenDi.XeKhach.SoGhe | Giá: @chuyenDi.Gia VND</p>
+                            </div>
+                            <div class="item">
+                                <a href="#" class="btn btn-primary" style="margin-left: 530px;">Đặt vé ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+    else
+    {
+        <p>Không có dữ liệu chuyến đi phù hợp.</p>
+    }
+</div>
+
+
+
+@functions {
+    public string FormatTimeHour(DateTime? time)
+    {
+        if (time.HasValue)
+        {
+            return time.Value.ToString("HH:mm");
+        }
+        return string.Empty;
+    }
+    public string FormatTimeDay(DateTime? time)
+    {
+        if (time.HasValue)
+        {
+            return time.Value.ToString("dd/MM/yyyy");
+        }
+        return string.Empty;
+    }
+
+}

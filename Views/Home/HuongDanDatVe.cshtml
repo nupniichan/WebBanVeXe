@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "HuongDanDatVe";
+    Layout = "~/Views/Shared/Header_Footer_Layout.cshtml";
+}
+
+<head>
+    <title>Hướng dẫn đặt vé</title>
+    <style>
+        /* CSS cho phần hướng dẫn */
+        .guide-section {
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+
+        .guide-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .guide-steps {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<header class="bg-primary text-white text-center py-5">
+    <h1 class="text-center">Hướng dẫn đặt vé</h1>
+</header>
+<body>
+    <div id="wrapper">
+        <div class="guide-section">
+            <div class="guide-item">
+                <div class="guide-title">Bước 1: Truy cập trang web hoặc ứng dụng di động</div>
+                <div class="guide-steps">
+                    Để đặt vé, hãy truy cập trang web của chúng tôi hoặc tải ứng dụng di động từ cửa hàng ứng dụng trên điện thoại của bạn.
+                </div>
+            </div>
+
+            <div class="guide-item">
+                <div class="guide-title">Bước 2: Tìm thông tin chuyến đi</div>
+                <div class="guide-steps">
+                    Sử dụng chức năng tìm kiếm trên trang web hoặc ứng dụng di động để tìm thông tin về giá vé, lịch trình và chỗ ngồi.
+                </div>
+            </div>
+
+            <div class="guide-item">
+                <div class="guide-title">Bước 3: Đăng ký hoặc đăng nhập (tùy chọn)</div>
+                <div class="guide-steps">
+                    Bạn có thể đăng ký tài khoản hoặc đăng nhập (nếu đã có tài khoản) để theo dõi đơn hàng và tùy chỉnh trải nghiệm của bạn.
+                </div>
+            </div>
+
+            <div class="guide-item">
+                <div class="guide-title">Bước 4: Chọn chuyến và chỗ ngồi</div>
+                <div class="guide-steps">
+                    Chọn chuyến đi bạn muốn và chỗ ngồi dự kiến và tiến hành thanh toán.
+                </div>
+            </div>
+
+            <div class="guide-item">
+                <div class="guide-title">Bước 5: Thanh toán</div>
+                <div class="guide-steps">
+                    Chúng tôi cung cấp nhiều kênh thanh toán khác nhau để phù hợp với nhu cầu của bạn. Chi tiết xin vui lòng xem lại <a href="@Url.Action("HuongDanThanhToan","Home")">đây</a>
+                </div>
+            </div>
+
+            <div class="guide-item">
+                <div class="guide-title">Bước 6: Kiểm tra vé</div>
+                <div class="guide-steps">
+                    Sau khi đã thanh toán bạn sẽ nhận được mã để xem chuyến đi của mình. Trước khi lên xe xin hãy xuất vé cho nhà xe trước để xác nhận!
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

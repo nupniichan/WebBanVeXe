@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBQuanLyXeModelStoreContainer" CdmEntityContainer="DBQuanLyXeEntities">
+    <EntitySetMapping Name="ChuyenDi">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.ChuyenDi">
+        <MappingFragment StoreEntitySet="ChuyenDi">
+          <ScalarProperty Name="IdChuyenDi" ColumnName="IdChuyenDi" />
+          <ScalarProperty Name="DiemXuatPhat" ColumnName="DiemXuatPhat" />
+          <ScalarProperty Name="DiemDen" ColumnName="DiemDen" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="ThoiGianDi" ColumnName="ThoiGianDi" />
+          <ScalarProperty Name="ThoiGianDen" ColumnName="ThoiGianDen" />
+          <ScalarProperty Name="IdNhanVien" ColumnName="IdNhanVien" />
+          <ScalarProperty Name="IdXeKhach" ColumnName="IdXeKhach" />
+          <ScalarProperty Name="IdLichTrinh" ColumnName="IdLichTrinh" />
+          <ScalarProperty Name="DiemDiCuThe" ColumnName="DiemDiCuThe" />
+          <ScalarProperty Name="DiemDenCuThe" ColumnName="DiemDenCuThe" />
+          <ScalarProperty Name="ThoiGianDuKien" ColumnName="ThoiGianDuKien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DanhSachGhe">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.DanhSachGhe">
+        <MappingFragment StoreEntitySet="DanhSachGhe">
+          <ScalarProperty Name="IdGhe" ColumnName="IdGhe" />
+          <ScalarProperty Name="IdXeKhach" ColumnName="IdXeKhach" />
+          <ScalarProperty Name="SoThuTu" ColumnName="SoThuTu" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HangXe">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.HangXe">
+        <MappingFragment StoreEntitySet="HangXe">
+          <ScalarProperty Name="IdHangXe" ColumnName="IdHangXe" />
+          <ScalarProperty Name="TenHangXe" ColumnName="TenHangXe" />
+          <ScalarProperty Name="DiaChiHangXe" ColumnName="DiaChiHangXe" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHang">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.KhachHang">
+        <MappingFragment StoreEntitySet="KhachHang">
+          <ScalarProperty Name="IdKhachHang" ColumnName="IdKhachHang" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LichTrinh">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.LichTrinh">
+        <MappingFragment StoreEntitySet="LichTrinh">
+          <ScalarProperty Name="IdLichTrinh" ColumnName="IdLichTrinh" />
+          <ScalarProperty Name="IdVeXe" ColumnName="IdVeXe" />
+          <ScalarProperty Name="NgayDi" ColumnName="NgayDi" />
+          <ScalarProperty Name="GioDi" ColumnName="GioDi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhanVien">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.NhanVien">
+        <MappingFragment StoreEntitySet="NhanVien">
+          <ScalarProperty Name="IdNhanVien" ColumnName="IdNhanVien" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="IdHangXe" ColumnName="IdHangXe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThanhToan">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.ThanhToan">
+        <MappingFragment StoreEntitySet="ThanhToan">
+          <ScalarProperty Name="IdThanhToan" ColumnName="IdThanhToan" />
+          <ScalarProperty Name="IdVeXe" ColumnName="IdVeXe" />
+          <ScalarProperty Name="SoTienThanhToan" ColumnName="SoTienThanhToan" />
+          <ScalarProperty Name="NgayThanhToan" ColumnName="NgayThanhToan" />
+          <ScalarProperty Name="ThoiGianThanhToan" ColumnName="ThoiGianThanhToan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VeXe">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.VeXe">
+        <MappingFragment StoreEntitySet="VeXe">
+          <ScalarProperty Name="IdVeXe" ColumnName="IdVeXe" />
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+          <ScalarProperty Name="SoLuongVe" ColumnName="SoLuongVe" />
+          <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="IdLichTrinh" ColumnName="IdLichTrinh" />
+          <ScalarProperty Name="IdKhachHang" ColumnName="IdKhachHang" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="XeKhach">
+      <EntityTypeMapping TypeName="DBQuanLyXeModel.XeKhach">
+        <MappingFragment StoreEntitySet="XeKhach">
+          <ScalarProperty Name="IdXeKhach" ColumnName="IdXeKhach" />
+          <ScalarProperty Name="BienSoXe" ColumnName="BienSoXe" />
+          <ScalarProperty Name="SoGhe" ColumnName="SoGhe" />
+          <ScalarProperty Name="LoaiXe" ColumnName="LoaiXe" />
+          <ScalarProperty Name="TenLoaiXe" ColumnName="TenLoaiXe" />
+          <ScalarProperty Name="IdHangXe" ColumnName="IdHangXe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

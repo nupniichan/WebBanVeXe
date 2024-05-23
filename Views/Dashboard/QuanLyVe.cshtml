@@ -1,0 +1,36 @@
+﻿@model List<ltweb_.Models.VeXe>
+
+@{
+    ViewBag.Title = "QuanLyVe";
+    Layout = "~/Views/Dashboard/DashboardIndex.cshtml";
+}
+
+<h2>Quản Lý Vé</h2>
+
+<table class="table">
+    <tr>
+        <th>ID Vé</th>
+        <th>Số Lượng Vé</th>
+        <th>Ngày Đặt</th>
+        <th>Trạng Thái</th>
+        <!-- Thêm các cột khác tùy theo cấu trúc dữ liệu của VeXe -->
+        <th>Chi tiết</th>
+    </tr>
+    @foreach (var veXe in Model)
+    {
+        <tr>
+            <td>@veXe.IdVeXe</td>
+            <td>@veXe.SoLuongVe</td>
+            <td>@veXe.NgayDat</td>
+            <td>@veXe.TrangThai</td>
+            <td>@veXe.KhachHang.HoTen</td>
+            <td>@veXe.GhiChu</td>
+            <td>@veXe.ThanhTien</td>
+            <td>@veXe.TrangThai</td>
+            <!-- Thêm các cột khác tùy theo cấu trúc dữ liệu của VeXe -->
+            <td>
+                @Html.ActionLink("Chi tiết", "ChiTietVe", new { idVeXe = veXe.IdVeXe }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBQuanLyXe_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChuyenDi">
+    <Key>
+      <PropertyRef Name="IdChuyenDi" />
+    </Key>
+    <Property Name="IdChuyenDi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiemXuatPhat" Type="nvarchar" MaxLength="255" />
+    <Property Name="DiemDen" Type="nvarchar" MaxLength="255" />
+    <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ThoiGianDi" Type="datetime" />
+    <Property Name="ThoiGianDen" Type="datetime" />
+    <Property Name="IdNhanVien" Type="int" />
+    <Property Name="IdXeKhach" Type="int" />
+  </EntityType>
+  <EntityType Name="DanhSachGhe">
+    <Key>
+      <PropertyRef Name="IdGhe" />
+    </Key>
+    <Property Name="IdGhe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdXeKhach" Type="int" />
+    <Property Name="SoThuTu" Type="int" />
+    <Property Name="TinhTrang" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DatXe">
+    <Key>
+      <PropertyRef Name="IdDatXe" />
+    </Key>
+    <Property Name="IdDatXe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="SoLuongVe" Type="tinyint" />
+    <Property Name="NgayDat" Type="datetime" />
+    <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdLichTrinh" Type="int" />
+    <Property Name="IdKhachHang" Type="int" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="HangXe">
+    <Key>
+      <PropertyRef Name="IdHangXe" />
+    </Key>
+    <Property Name="IdHangXe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenHangXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChiHangXe" Type="nvarchar" MaxLength="100" />
+    <Property Name="TenDangNhap" Type="char" MaxLength="50" />
+    <Property Name="MatKhau" Type="char" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="IdKhachHang" />
+    </Key>
+    <Property Name="IdKhachHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="255" />
+    <Property Name="SoDienThoai" Type="char" MaxLength="15" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" />
+    <Property Name="TenDangNhap" Type="char" MaxLength="50" />
+    <Property Name="MatKhau" Type="char" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LichTrinh">
+    <Key>
+      <PropertyRef Name="IdLichTrinh" />
+    </Key>
+    <Property Name="IdLichTrinh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdChuyenDi" Type="int" />
+    <Property Name="NgayDi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="IdNhanVien" />
+    </Key>
+    <Property Name="IdNhanVien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="255" />
+    <Property Name="NgaySinh" Type="datetime" />
+    <Property Name="SoDienThoai" Type="int" />
+    <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdHangXe" Type="int" />
+  </EntityType>
+  <EntityType Name="ThanhToan">
+    <Key>
+      <PropertyRef Name="IdThanhToan" />
+    </Key>
+    <Property Name="IdThanhToan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDatXe" Type="int" />
+    <Property Name="SoTienThanhToan" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="NgayThanhToan" Type="datetime" />
+    <Property Name="ThoiGianThanhToan" Type="datetime" />
+  </EntityType>
+  <EntityType Name="XeKhach">
+    <Key>
+      <PropertyRef Name="IdXeKhach" />
+    </Key>
+    <Property Name="IdXeKhach" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BienSoXe" Type="nvarchar" MaxLength="15" />
+    <Property Name="SoGhe" Type="int" />
+    <Property Name="LoaiXe" Type="char" MaxLength="15" />
+    <Property Name="TenLoaiXe" Type="char" MaxLength="15" />
+    <Property Name="IdHangXe" Type="int" />
+  </EntityType>
+  <Association Name="FK__ChuyenDi__IdNhan__5EBF139D">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="ChuyenDi" Type="Self.ChuyenDi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="IdNhanVien" />
+      </Principal>
+      <Dependent Role="ChuyenDi">
+        <PropertyRef Name="IdNhanVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChuyenDi__IdXeKh__5DCAEF64">
+    <End Role="XeKhach" Type="Self.XeKhach" Multiplicity="0..1" />
+    <End Role="ChuyenDi" Type="Self.ChuyenDi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="XeKhach">
+        <PropertyRef Name="IdXeKhach" />
+      </Principal>
+      <Dependent Role="ChuyenDi">
+        <PropertyRef Name="IdXeKhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DanhSachG__IdXeK__60A75C0F">
+    <End Role="XeKhach" Type="Self.XeKhach" Multiplicity="0..1" />
+    <End Role="DanhSachGhe" Type="Self.DanhSachGhe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="XeKhach">
+        <PropertyRef Name="IdXeKhach" />
+      </Principal>
+      <Dependent Role="DanhSachGhe">
+        <PropertyRef Name="IdXeKhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DatXe__IdKhachHa__5BE2A6F2">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="DatXe" Type="Self.DatXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="IdKhachHang" />
+      </Principal>
+      <Dependent Role="DatXe">
+        <PropertyRef Name="IdKhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DatXe__IdLichTri__5CD6CB2B">
+    <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="0..1" />
+    <End Role="DatXe" Type="Self.DatXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LichTrinh">
+        <PropertyRef Name="IdLichTrinh" />
+      </Principal>
+      <Dependent Role="DatXe">
+        <PropertyRef Name="IdLichTrinh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LichTrinh__IdChu__59063A47">
+    <End Role="ChuyenDi" Type="Self.ChuyenDi" Multiplicity="0..1" />
+    <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuyenDi">
+        <PropertyRef Name="IdChuyenDi" />
+      </Principal>
+      <Dependent Role="LichTrinh">
+        <PropertyRef Name="IdChuyenDi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NhanVien__IdHang__59FA5E80">
+    <End Role="HangXe" Type="Self.HangXe" Multiplicity="0..1" />
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HangXe">
+        <PropertyRef Name="IdHangXe" />
+      </Principal>
+      <Dependent Role="NhanVien">
+        <PropertyRef Name="IdHangXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThanhToan__IdDat__5FB337D6">
+    <End Role="DatXe" Type="Self.DatXe" Multiplicity="0..1" />
+    <End Role="ThanhToan" Type="Self.ThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatXe">
+        <PropertyRef Name="IdDatXe" />
+      </Principal>
+      <Dependent Role="ThanhToan">
+        <PropertyRef Name="IdDatXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__XeKhach__IdHangX__5AEE82B9">
+    <End Role="HangXe" Type="Self.HangXe" Multiplicity="0..1" />
+    <End Role="XeKhach" Type="Self.XeKhach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HangXe">
+        <PropertyRef Name="IdHangXe" />
+      </Principal>
+      <Dependent Role="XeKhach">
+        <PropertyRef Name="IdHangXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBQuanLyXe_ModelStoreContainer">
+    <EntitySet Name="ChuyenDi" EntityType="Self.ChuyenDi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DanhSachGhe" EntityType="Self.DanhSachGhe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DatXe" EntityType="Self.DatXe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HangXe" EntityType="Self.HangXe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LichTrinh" EntityType="Self.LichTrinh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ThanhToan" EntityType="Self.ThanhToan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XeKhach" EntityType="Self.XeKhach" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ChuyenDi__IdNhan__5EBF139D" Association="Self.FK__ChuyenDi__IdNhan__5EBF139D">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="ChuyenDi" EntitySet="ChuyenDi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChuyenDi__IdXeKh__5DCAEF64" Association="Self.FK__ChuyenDi__IdXeKh__5DCAEF64">
+      <End Role="XeKhach" EntitySet="XeKhach" />
+      <End Role="ChuyenDi" EntitySet="ChuyenDi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DanhSachG__IdXeK__60A75C0F" Association="Self.FK__DanhSachG__IdXeK__60A75C0F">
+      <End Role="XeKhach" EntitySet="XeKhach" />
+      <End Role="DanhSachGhe" EntitySet="DanhSachGhe" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DatXe__IdKhachHa__5BE2A6F2" Association="Self.FK__DatXe__IdKhachHa__5BE2A6F2">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="DatXe" EntitySet="DatXe" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DatXe__IdLichTri__5CD6CB2B" Association="Self.FK__DatXe__IdLichTri__5CD6CB2B">
+      <End Role="LichTrinh" EntitySet="LichTrinh" />
+      <End Role="DatXe" EntitySet="DatXe" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LichTrinh__IdChu__59063A47" Association="Self.FK__LichTrinh__IdChu__59063A47">
+      <End Role="ChuyenDi" EntitySet="ChuyenDi" />
+      <End Role="LichTrinh" EntitySet="LichTrinh" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NhanVien__IdHang__59FA5E80" Association="Self.FK__NhanVien__IdHang__59FA5E80">
+      <End Role="HangXe" EntitySet="HangXe" />
+      <End Role="NhanVien" EntitySet="NhanVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThanhToan__IdDat__5FB337D6" Association="Self.FK__ThanhToan__IdDat__5FB337D6">
+      <End Role="DatXe" EntitySet="DatXe" />
+      <End Role="ThanhToan" EntitySet="ThanhToan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__XeKhach__IdHangX__5AEE82B9" Association="Self.FK__XeKhach__IdHangX__5AEE82B9">
+      <End Role="HangXe" EntitySet="HangXe" />
+      <End Role="XeKhach" EntitySet="XeKhach" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

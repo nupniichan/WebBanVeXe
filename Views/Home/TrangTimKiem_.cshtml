@@ -1,0 +1,222 @@
+﻿@{
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <div id="wrapper">
+        <div class="filter-result">
+            <div class="filter">
+                <h2>Bộ lọc</h2>
+                <div class="filter-search">
+                    <p class="title-search">Giờ đi</p>
+                    <div class="radio-groupdefault-sort">
+                        <div class="radio-group">
+                            <input type="radio" id="default" name="sort" checked>
+                            <label for="default">Mặc định</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="earliest" name="sort">
+                            <label for="earliest">Giờ đi sớm nhất</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="latest" name="sort">
+                            <label for="latest">Giờ đi muộn nhất</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="price-asc" name="sort">
+                            <label for="price-asc">Giá tăng dần</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="price-desc" name="sort">
+                            <label for="price-desc">Giá giảm dần</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="more-filter">
+                    <p class="title-search">Sắp xếp</p>
+                    <div class="filter-time">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="morning" name="time" value="morning">
+                        </div>
+                        <div class="label-wrapper">
+                            <label for="morning">Sáng sớm 00:00 - 06:00</label>
+                        </div>
+
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="forenoon" name="time" value="forenoon">
+                        </div>
+                        <div class="label-wrapper">
+                            <label for="forenoon">Buổi sáng 06:00 - 12:00</label>
+                        </div>
+
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="afternoon" name="time" value="afternoon">
+                        </div>
+                        <div class="label-wrapper">
+                            <label for="afternoon">Buổi chiều 12:00 - 18:00</label>
+                        </div>
+
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="evening" name="time" value="evening">
+                        </div>
+                        <div class="label-wrapper">
+                            <label for="evening">Buổi tối 18:00 - 24:00</label>
+                        </div>
+                    </div>
+                    <hr />
+                    <p class="title-search">Nhà xe</p>
+                    <div class="search-nhaxe-container">
+                        <input type="text" id="search-nhaxe-input" placeholder="Nhập nhà xe mong muốn">
+                        <div id="results" class="dropdown-menu"></div>
+                    </div>
+                    <hr />
+                    <p class="title-search">Giá</p>
+                    <div class="filter-min-max-price">
+                        <div class="filter-min">
+                            <p>Thấp nhất</p>
+                            <input type="number" class="filter-input-min" placeholder="Thấp nhất" />
+                        </div>
+                        <div class="filter-max">
+                            <p>Cao nhất</p>
+                            <input type="number" class="filter-input-max" placeholder="Cao nhất" />
+                        </div>
+                    </div>
+                    <hr />
+                    <p class="title-search">Loại ghế / giường</p>
+                    <div class="radio-kindofseat-sort">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="seat" name="Ghế Ngồi" value="seat">
+                            <label for="lieseat">Ghế ngồi</label>
+                        </div>
+
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="lieseat" name="Giường nằm" value="lieseat">
+                            <label for="lieseat">Giường nằm</label>
+                        </div>
+
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="Limousine" name="Limousine" value="Limousine">
+                            <label for="lieseat">Limousine</label>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <p class="title-search">Tầng</p>
+                    <div class="container">
+                        <div class="row radio-group-sort" style="width:260px; margin-left:-30px">
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="floor1" name="floor">
+                                    <label class="form-check-label" for="floor1">Tầng Trên</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="floor2" name="floor">
+                                    <label class="form-check-label" for="floor2">Tầng Dưới</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="result">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <hr />
+    <script>
+    $(document).ready(function () {
+        // Ẩn phần tử .bg-img
+        $('.bg-img').hide();
+
+        // Gọi hàm để thay đổi giá trị transform
+        changeTransformValue();
+    });
+
+    // Thay đổi giá trị transform khi chuyển sang trang khác
+    function changeTransformValue() {
+        var searchContent = document.querySelector('.search-content');
+        searchContent.style.transform = 'translate(-50%, 5%)';
+    }
+
+
+    const carList = [
+        'Phương trang',
+        'Thành Bưởi',
+        'Hiệp Thành',
+        // Thêm các nhà xe khác vào đây
+    ];
+
+    const searchInput = document.getElementById('search-nhaxe-input');
+    const resultsContainer = document.getElementById('results');
+
+    searchInput.addEventListener('input', function (event) {
+        const inputValue = event.target.value.toLowerCase();
+        const filteredResults = carList.filter(car => car.toLowerCase().includes(inputValue));
+
+        resultsContainer.innerHTML = '';
+        if (filteredResults.length > 0) {
+            resultsContainer.style.display = 'block';
+            const randomResults = getRandomResults(filteredResults, 10);
+            randomResults.forEach(result => {
+                const resultElement = document.createElement('a');
+                resultElement.classList.add('dropdown-item');
+                resultElement.href = '#';
+                resultElement.textContent = result;
+                resultElement.addEventListener('click', function () {
+                    searchInput.value = result;
+                    resultsContainer.style.display = 'none';
+                });
+                resultsContainer.appendChild(resultElement);
+            });
+        } else {
+            resultsContainer.style.display = 'none';
+        }
+    });
+
+    searchInput.addEventListener('click', function (event) {
+        searchInput.value = '';
+        resultsContainer.style.display = 'block';
+        event.stopPropagation(); // Sửa lỗi tên biến e -> event
+    });
+
+    document.addEventListener('click', function (event) {
+        if (resultsContainer.style.display === 'block') {
+            resultsContainer.style.display = 'none';
+        }
+    });
+
+    function getRandomResults(results, count) {
+        const shuffledResults = results.sort(() => 0.5 - Math.random());
+        return shuffledResults.slice(0, count);
+    }
+
+    searchInput.addEventListener('click', function () {
+        searchInput.value = '';
+        resultsContainer.style.display = 'block';
+        e.stopPropagation();
+    });
+
+    document.addEventListener('click', function (event) {
+        if (resultsContainer.style.display === 'block') {
+            resultsContainer.style.display = 'none';
+        }
+    });
+
+    function getRandomResults(results, count) {
+        const shuffledResults = results.sort(() => 0.5 - Math.random());
+        return shuffledResults.slice(0, count);
+    }
+    </script>
+</body>
+</html>

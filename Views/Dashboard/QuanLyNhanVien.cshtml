@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "QuanLyNhanVien";
+    Layout = "~/Views/Dashboard/DashboardIndex.cshtml";
+}
+@Html.ActionLink("Tạo mới nhân viên", "CreateNhanVien", "Dashboard", new { }, new { @class = "btn btn-primary" })
+<br />
+<div class="table-responsive">
+    <!-- Sử dụng table-responsive để làm cho bảng ngăn cuộn trên màn hình nhỏ -->
+    <table class="table table-bordered table-striped">
+        <!-- Sử dụng lớp của Bootstrap để tạo bảng đẹp hơn -->
+        <thead>
+            <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">Họ Tên</th> <!-- Để căn giữa dùng text-center -->
+                <th class="text-center">Ngày Sinh</th>
+                <th class="text-center">Số Điện Thoại</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Chức vụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var nhanVien in Model)
+            {
+                <tr>
+                    <td class="text-center">@nhanVien.IdNhanVien</td>
+                    <td class="text-center">@nhanVien.HoTen</td>
+                    <td class="text-center">@nhanVien.NgaySinh</td>
+                    <td class="text-center">@nhanVien.SoDienThoai</td>
+                    <td class="text-center">@nhanVien.email</td>
+                    <td class="text-center">@nhanVien.ChucVu</td>
+                    <td class="text-center">@Html.ActionLink("Sửa", "EditNhanVien", "Dashboard", new { id = nhanVien.IdNhanVien }, new { @class = "btn btn-warning" })</td>
+                    <td class="text-center">@Html.ActionLink("Xoá", "RemoveNhanVien", "Dashboard", new { id = nhanVien.IdNhanVien }, new { @class = "btn btn-danger" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
